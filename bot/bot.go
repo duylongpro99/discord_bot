@@ -56,9 +56,10 @@ func messageHandler(s *discordgo.Session, e *discordgo.MessageCreate) {
 
 	prefix := config.BotPrefix
 	if strings.HasPrefix(e.Content, prefix) {
-		args := strings.Fields(e.Content)[strings.Index(e.Content, prefix):]
-		cmd := args[0][len(prefix):]
-
+		args := strings.Fields(e.Content)[strings.Index(e.Content, prefix)]
+		fmt.Println(args)
+		cmd := args[len(prefix):]
+		fmt.Println(cmd)
 		switch cmd {
 		case "ping":
 			_, err := s.ChannelMessageSend(e.ChannelID, "Pong!")
